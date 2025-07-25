@@ -31,13 +31,14 @@ const applyBaseStyles = () => {
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const toggleMenu = () => {
-    const isHidden = mobileMenu.classList.toggle('hidden');
-    document.body.style.overflow = isHidden ? '' : 'hidden';
-    menuBtn.querySelector('i').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+    mobileMenu.classList.toggle('open');
+    const isOpen = mobileMenu.classList.contains('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    menuBtn.querySelector('i').setAttribute('data-lucide', isOpen ? 'x' : 'menu');
     lucide.createIcons();
 };
 menuBtn.addEventListener('click', toggleMenu);
-document.querySelectorAll('.menu-link, .nav-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
+document.querySelectorAll('.menu-link, .nav-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.contains('open') && toggleMenu()));
 
 // --- ANIMAÇÃO DE SCROLL (REVEAL) ---
 const observer = new IntersectionObserver((entries) => {
