@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syngred Sebinelli | Trama Afrofuturista</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins & Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Estilo base e variáveis de cor para um tema Afrofuturista */
+        :root {
+            --bg-color: #120F13; /* Preto profundo com tom roxo */
+            --text-color: #EAEAEA; /* Branco suave */
+            --primary-color: #D4AF37; /* Dourado antigo/metálico */
+            --accent-color: #8A2BE2; /* Roxo azulado vibrante */
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* Fundo com padrão geométrico sutil */
+            background-image: 
+                linear-gradient(rgba(18, 15, 19, 0.95), rgba(18, 15, 19, 0.95)),
+                url('https://www.transparenttextures.com/patterns/diagmonds.png');
+        }
+        
+        /* Estilo para títulos */
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Estilo para cards com efeito sofisticado */
+        .afro-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .afro-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Animação de fade-in ao rolar a página */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilos para o Modal de Projeto */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(18, 15, 19, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 900px;
+            animation: slide-in 0.5s ease-out;
+        }
+        @keyframes slide-in {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Cabeçalho -->
+    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-color)]">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#inicio" class="text-xl font-bold tracking-widest text-white hover:text-[var(--primary-color)] transition-colors">S. SEBINELLI</a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
+                <a href="#sobre" class="nav-link">MANIFESTO</a>
+                <a href="#portfolio" class="nav-link">COLEÇÕES</a>
+                <a href="#laboratorios" class="nav-link">LABORATÓRIOS</a>
+                <a href="#contato" class="nav-link">CONTATO</a>
+            </nav>
+            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
+            <a href="#sobre" class="menu-link">MANIFESTO</a>
+            <a href="#portfolio" class="menu-link">COLEÇÕES</a>
+            <a href="#laboratorios" class="menu-link">LABORATÓRIOS</a>
+            <a href="#contato" class="menu-link">CONTATO</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Seção Início (Hero) -->
+        <section id="inicio" class="min-h-screen flex items-center pt-20">
+            <div class="w-full text-center md:text-left reveal">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-white">
+                    Tradição Ancestral
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)]">
+                        Visão Futurista.
+                    </span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 text-gray-300">
+                    Reimaginando a tecnologia da tecelagem manual como artefatos de poder, identidade e futuro.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#portfolio" class="cta-button">Explorar Coleções</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre / Manifesto -->
+        <section id="sobre" class="py-20 md:py-32 reveal">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-2">
+                    <div class="p-2 border border-[var(--border-color)] rounded-lg afro-card">
+                        <img src="https://placehold.co/600x600/120F13/D4AF37?text=S.+S." alt="Retrato de Syngred Sebinelli" class="rounded-md w-full">
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <h2 class="section-title">Manifesto</h2>
+                    <p class="text-gray-300 mb-4 leading-relaxed">Cada ponto de crochê é um pixel, cada trama um código. Eu não apenas teço fios; eu programo narrativas. Meu trabalho resgata a tecelagem como uma tecnologia ancestral e a projeta no futuro, criando peças que são armaduras, amuletos e declarações. É a fusão do artesanato com o sci-fi, do orgânico com o circuito, honrando quem veio antes e construindo o amanhã.</p>
+                    <div class="mt-6 flex gap-x-6 gap-y-4 flex-wrap">
+                        <div class="flex items-center gap-2"><i data-lucide="dna" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Herança Tecnológica</span></div>
+                        <div class="flex items-center gap-2"><i data-lucide="gem" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Design Visionário</span></div>
+                        <div class="flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Produção Consciente</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Portfólio / Coleções -->
+        <section id="portfolio" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Coleção "Ananse"</h2>
+                <p class="section-subtitle">Artefatos tecidos, inspirados no Deus-Aranha, o contador de todas as histórias.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="project-card" data-project="1">
+                    <img src="https://placehold.co/800x600/8A2BE2/FFFFFF?text=Amuleto+Orun" alt="Amuleto Orun" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Amuleto Orun</h3><p class="text-gray-400 text-sm">Acessório de Poder / Fios Metálicos</p></div>
+                </div>
+                <div class="project-card" data-project="2">
+                    <img src="https://placehold.co/800x600/D4AF37/000000?text=Armadura+Nzinga" alt="Armadura Nzinga" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Armadura Nzinga</h3><p class="text-gray-400 text-sm">Vestuário / Fibras Recicladas</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção Laboratórios / Oficinas -->
+        <section id="laboratorios" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="section-title">Laboratórios de Trama</h2>
+                <p class="section-subtitle">Um convite para decodificar a linguagem da tecelagem e programar suas próprias narrativas.</p>
+            </div>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                <div class="afro-card p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">Protocolo Gênesis</h3>
+                    <p class="text-gray-400 mb-4">Aprenda os códigos-fonte do crochê e crie seu primeiro artefato em uma imersão intensiva.</p>
+                    <p class="text-lg font-bold text-[var(--primary-color)] mb-4">Transmissões Limitadas</p>
+                    <a href="#contato" class="cta-button-secondary">Acessar Lista de Espera</a>
+                </div>
+                <div class="afro-card p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">Oráculo Pessoal</h3>
+                    <p class="text-gray-400 mb-4">Mentoria individual para tecelãs que desejam transmutar suas visões em coleções autorais.</p>
+                    <a href="#contato" class="cta-button-secondary">Consultar Disponibilidade</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Iniciar Conexão</h2>
+                <p class="section-subtitle">Para comissionar artefatos, colaborações ou acessar os laboratórios.</p>
+            </div>
+            <div class="max-w-xl mx-auto afro-card p-8 rounded-lg">
+                <form id="contact-form">
+                    <div class="mb-4">
+                        <label for="interest" class="block text-sm font-medium text-gray-300 mb-1">Protocolo de Interesse:</label>
+                        <select id="interest" name="interest" class="form-input">
+                            <option>Comissionar um Artefato</option>
+                            <option>Acessar Laboratórios de Trama</option>
+                            <option>Propor Colaboração</option>
+                            <option>Outras Frequências</option>
+                        </select>
+                    </div>
+                    <div class="mb-4"><input type="text" id="name" name="name" placeholder="Seu Nome / Codinome" class="form-input" required></div>
+                    <div class="mb-4"><input type="email" id="email" name="email" placeholder="Seu Canal de Contato (Email)" class="form-input" required></div>
+                    <div class="mb-4"><textarea id="message" name="message" rows="4" placeholder="Sua Mensagem" class="form-input" required></textarea></div>
+                    <button type="submit" class="cta-button w-full">Transmitir Mensagem</button>
+                </form>
+                <p id="form-status" class="mt-4 text-center"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="border-t border-[var(--border-color)] mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="social-link"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="social-link"><i data-lucide="send" class="w-6 h-6"></i></a>
+            </div>
+            <p class="text-sm">&copy; <span id="current-year"></span> Syngred Sebinelli. Tecendo o Futuro.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Estudos de Caso -->
+    <div id="project-modal" class="modal">
+        <div id="modal-content-container" class="modal-content afro-card rounded-lg">
+            <!-- Conteúdo do projeto será injetado aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURAÇÃO E ESTILOS DINÂMICOS ---
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--primary-color)',
+                        accent: 'var(--accent-color)',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+        
+        const applyBaseStyles = () => {
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.add('hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.menu-link').forEach(el => el.classList.add('text-2xl', 'font-bold', 'tracking-widest', 'hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.cta-button').forEach(el => el.classList.add('bg-[var(--primary-color)]', 'text-black', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'hover:shadow-[0_0_20px_var(--primary-color)]', 'tracking-widest'));
+            document.querySelectorAll('.cta-button-secondary').forEach(el => el.classList.add('bg-transparent', 'text-[var(--primary-color)]', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'border-2', 'border-[var(--primary-color)]', 'hover:bg-[var(--primary-color)]', 'hover:text-black', 'tracking-widest'));
+            document.querySelectorAll('.section-title').forEach(el => el.classList.add('text-3xl', 'md:text-4xl', 'font-bold', 'text-white'));
+            document.querySelectorAll('.section-subtitle').forEach(el => el.classList.add('text-lg', 'text-gray-400', 'mt-2', 'font-sans', 'normal-case', 'tracking-normal'));
+            document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-[var(--primary-color)]', 'transition-colors'));
+            document.querySelectorAll('.project-card').forEach(el => el.classList.add('group', 'block', 'rounded-lg', 'afro-card', 'overflow-hidden', 'cursor-pointer'));
+            document.querySelectorAll('.project-image').forEach(el => el.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-500', 'group-hover:scale-105'));
+            document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-black/20', 'border', 'border-[var(--border-color)]', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--primary-color)]', 'transition-all', 'placeholder-gray-500', 'font-sans'));
+        };
+
+        // --- MENU MOBILE ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleMenu = () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            document.body.style.overflow = isHidden ? '' : 'hidden';
+            menuBtn.querySelector('i').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+            lucide.createIcons();
+        };
+        menuBtn.addEventListener('click', toggleMenu);
+        document.querySelectorAll('.menu-link, .nav-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
+
+        // --- ANIMAÇÃO DE SCROLL (REVEAL) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- LÓGICA DO MODAL DE PROJETOS ---
+        const projectModal = document.getElementById('project-modal');
+        const modalContentContainer = document.getElementById('modal-content-container');
+        
+        const projectData = {
+            '1': {
+                title: 'Amuleto Orun',
+                category: 'Acessório de Poder / Fios Metálicos',
+                image: 'https://placehold.co/800x450/8A2BE2/FFFFFF?text=Amuleto+Orun+Detalhes',
+                concept: 'Orun, o céu. Este amuleto é uma representação portátil do cosmos, uma galáxia tecida para ser usada como ponto de força e conexão espiritual.',
+                materials: 'Trama de fios metálicos reciclados sobre uma base de fibra de carbono, garantindo leveza e resistência. Contém um fragmento de quartzo no núcleo.',
+                process: 'Cada amuleto é tecido em um padrão fractal único, um processo meditativo que dura 12 horas. A geometria é inspirada nos diagramas cosmogônicos iorubás.',
+                finalPiece: 'Um artefato que une o sagrado e o tecnológico, servindo como um lembrete de que carregamos o universo dentro de nós.'
+            },
+            '2': {
+                title: 'Armadura Nzinga',
+                category: 'Vestuário / Fibras Recicladas',
+                image: 'https://placehold.co/800x450/D4AF37/000000?text=Armadura+Nzinga+Detalhes',
+                concept: 'Inspirada na rainha Nzinga de Angola, esta peça não é uma blusa, é uma armadura. É sobre ocupar espaços com confiança, poder e a memória de quem lutou antes de nós.',
+                materials: 'Fios de alta durabilidade feitos de plástico PET reciclado, com detalhes em trama de cobre para conduzir e proteger a energia de quem a veste.',
+                process: 'A modelagem combina a rigidez de uma ombreira com a fluidez do crochê, criando uma silhueta que é ao mesmo tempo imponente e orgânica.',
+                finalPiece: 'Uma peça de vestuário que é uma declaração. Não é para se esconder, é para ser vista. É a materialização da soberania pessoal.'
+            }
+        };
+
+        const createModalContent = (data) => {
+            return `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">${data.title}</h2>
+                        <p class="text-sm text-gray-400 mb-6 font-sans normal-case tracking-normal">${data.category}</p>
+                    </div>
+                    <i data-lucide="x" class="close-modal w-8 h-8 text-gray-400 hover:text-white transition-colors"></i>
+                </div>
+                <img src="${data.image}" alt="${data.title}" class="w-full rounded-lg mb-8">
+                <div class="space-y-6 text-gray-300 font-sans">
+                    <div><h3 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-1">Conceito</h3><p>${data.concept}</p></div>
+                    <div><h3 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-1">Materiais e Tecnologia</h3><p>${data.materials}</p></div>
+                    <div><h3 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-1">Processo de Tecelagem</h3><p>${data.process}</p></div>
+                    <div><h4 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-2">O Artefato Final</h4><p class="italic text-[var(--primary-color)]">"${data.finalPiece}"</p></div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-[var(--border-color)] text-center">
+                    <a href="#contato" class="cta-button modal-cta">Comissionar um Artefato</a>
+                </div>
+            `;
+        };
+        
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+                const data = projectData[projectId];
+                modalContentContainer.innerHTML = createModalContent(data);
+                projectModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                lucide.createIcons();
+                projectModal.querySelector('.close-modal').addEventListener('click', closeModal);
+                projectModal.querySelector('.modal-cta').addEventListener('click', closeModal);
+            });
+        });
+
+        const closeModal = () => {
+            projectModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target == projectModal) closeModal();
+        });
+
+        // --- FORMULÁRIO DE CONTATO ---
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formStatus.textContent = 'Transmitindo...';
+            formStatus.style.color = 'var(--text-color)';
+            
+            setTimeout(() => {
+                formStatus.textContent = 'Conexão Estabelecida. Mensagem Recebida.';
+                formStatus.style.color = 'var(--primary-color)';
+                form.reset();
+            }, 1500);
+        });
+
+        // --- INICIALIZAÇÃO ---
+        document.addEventListener('DOMContentLoaded', () => {
+            applyBaseStyles();
+            lucide.createIcons();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
