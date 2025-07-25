@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syngred Sebinelli | Trama Afrofuturista</title>
+
+    <!-- Tailwind CSS -->
+    <script src="tailwind.js"></script>
+
+    <!-- Google Fonts: Poppins & Orbitron -->
+    <link rel="stylesheet" href="google-fonts.css">
+
+    <!-- Lucide Icons -->
+    <script src="lucide.js"></script>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="antialiased">
+
+    <!-- Cabeçalho -->
+    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-color)]">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#inicio" class="text-xl font-bold tracking-widest text-white hover:text-[var(--primary-color)] transition-colors">S. SEBINELLI</a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
+                <a href="#sobre" class="nav-link">MANIFESTO</a>
+                <a href="#portfolio" class="nav-link">COLEÇÕES</a>
+                <a href="#laboratorios" class="nav-link">LABORATÓRIOS</a>
+                <a href="#contato" class="nav-link">CONTATO</a>
+            </nav>
+            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
+            <a href="#sobre" class="menu-link">MANIFESTO</a>
+            <a href="#portfolio" class="menu-link">COLEÇÕES</a>
+            <a href="#laboratorios" class="menu-link">LABORATÓRIOS</a>
+            <a href="#contato" class="menu-link">CONTATO</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Seção Início (Hero) -->
+        <section id="inicio" class="min-h-screen flex items-center pt-20">
+            <div class="w-full text-center md:text-left reveal">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-white">
+                    Tradição Ancestral
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)]">
+                        Visão Futurista.
+                    </span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 text-gray-300">
+                    Reimaginando a tecnologia da tecelagem manual como artefatos de poder, identidade e futuro.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#portfolio" class="cta-button">Explorar Coleções</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre / Manifesto -->
+        <section id="sobre" class="py-20 md:py-32 reveal">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-2">
+                    <div class="p-2 border border-[var(--border-color)] rounded-lg afro-card">
+                        <img src="https://placehold.co/600x600/120F13/D4AF37?text=S.+S." alt="Retrato de Syngred Sebinelli" class="rounded-md w-full">
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <h2 class="section-title">Manifesto</h2>
+                    <p class="text-gray-300 mb-4 leading-relaxed">Cada ponto de crochê é um pixel, cada trama um código. Eu não apenas teço fios; eu programo narrativas. Meu trabalho resgata a tecelagem como uma tecnologia ancestral e a projeta no futuro, criando peças que são armaduras, amuletos e declarações. É a fusão do artesanato com o sci-fi, do orgânico com o circuito, honrando quem veio antes e construindo o amanhã.</p>
+                    <div class="mt-6 flex gap-x-6 gap-y-4 flex-wrap">
+                        <div class="flex items-center gap-2"><i data-lucide="dna" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Herança Tecnológica</span></div>
+                        <div class="flex items-center gap-2"><i data-lucide="gem" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Design Visionário</span></div>
+                        <div class="flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Produção Consciente</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Portfólio / Coleções -->
+        <section id="portfolio" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Coleção "Ananse"</h2>
+                <p class="section-subtitle">Artefatos tecidos, inspirados no Deus-Aranha, o contador de todas as histórias.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="project-card" data-project="1">
+                    <img src="https://placehold.co/800x600/8A2BE2/FFFFFF?text=Amuleto+Orun" alt="Amuleto Orun" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Amuleto Orun</h3><p class="text-gray-400 text-sm">Acessório de Poder / Fios Metálicos</p></div>
+                </div>
+                <div class="project-card" data-project="2">
+                    <img src="https://placehold.co/800x600/D4AF37/000000?text=Armadura+Nzinga" alt="Armadura Nzinga" class="project-image">
+                    <div class="p-6"><h3 class="text-xl font-bold">Armadura Nzinga</h3><p class="text-gray-400 text-sm">Vestuário / Fibras Recicladas</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Laboratórios / Oficinas -->
+        <section id="laboratorios" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="section-title">Laboratórios de Trama</h2>
+                <p class="section-subtitle">Um convite para decodificar a linguagem da tecelagem e programar suas próprias narrativas.</p>
+            </div>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                <div class="afro-card p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">Protocolo Gênesis</h3>
+                    <p class="text-gray-400 mb-4">Aprenda os códigos-fonte do crochê e crie seu primeiro artefato em uma imersão intensiva.</p>
+                    <p class="text-lg font-bold text-[var(--primary-color)] mb-4">Transmissões Limitadas</p>
+                    <a href="#contato" class="cta-button-secondary">Acessar Lista de Espera</a>
+                </div>
+                <div class="afro-card p-8 rounded-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">Oráculo Pessoal</h3>
+                    <p class="text-gray-400 mb-4">Mentoria individual para tecelãs que desejam transmutar suas visões em coleções autorais.</p>
+                    <a href="#contato" class="cta-button-secondary">Consultar Disponibilidade</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato" class="py-20 md:py-32 reveal">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Iniciar Conexão</h2>
+                <p class="section-subtitle">Para comissionar artefatos, colaborações ou acessar os laboratórios.</p>
+            </div>
+            <div class="max-w-xl mx-auto afro-card p-8 rounded-lg">
+                <form id="contact-form">
+                    <div class="mb-4">
+                        <label for="interest" class="block text-sm font-medium text-gray-300 mb-1">Protocolo de Interesse:</label>
+                        <select id="interest" name="interest" class="form-input">
+                            <option>Comissionar um Artefato</option>
+                            <option>Acessar Laboratórios de Trama</option>
+                            <option>Propor Colaboração</option>
+                            <option>Outras Frequências</option>
+                        </select>
+                    </div>
+                    <div class="mb-4"><input type="text" id="name" name="name" placeholder="Seu Nome / Codinome" class="form-input" required></div>
+                    <div class="mb-4"><input type="email" id="email" name="email" placeholder="Seu Canal de Contato (Email)" class="form-input" required></div>
+                    <div class="mb-4"><textarea id="message" name="message" rows="4" placeholder="Sua Mensagem" class="form-input" required></textarea></div>
+                    <button type="submit" class="cta-button w-full">Transmitir Mensagem</button>
+                </form>
+                <p id="form-status" class="mt-4 text-center"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="border-t border-[var(--border-color)] mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="social-link"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="social-link"><i data-lucide="send" class="w-6 h-6"></i></a>
+            </div>
+            <p class="text-sm">&copy; <span id="current-year"></span> Syngred Sebinelli. Tecendo o Futuro.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Estudos de Caso -->
+    <div id="project-modal" class="modal">
+        <div id="modal-content-container" class="modal-content afro-card rounded-lg">
+            <!-- Conteúdo do projeto será injetado aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

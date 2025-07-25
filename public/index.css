@@ -1,0 +1,83 @@
+/* Estilo base e variáveis de cor para um tema Afrofuturista */
+:root {
+    --bg-color: #120F13; /* Preto profundo com tom roxo */
+    --text-color: #EAEAEA; /* Branco suave */
+    --primary-color: #D4AF37; /* Dourado antigo/metálico */
+    --accent-color: #8A2BE2; /* Roxo azulado vibrante */
+    --border-color: rgba(212, 175, 55, 0.2);
+}
+
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* Fundo com padrão geométrico sutil */
+    background-image:
+        linear-gradient(rgba(18, 15, 19, 0.95), rgba(18, 15, 19, 0.95)),
+        url('https://www.transparenttextures.com/patterns/diagmonds.png');
+}
+
+/* Estilo para títulos */
+h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Estilo para cards com efeito sofisticado */
+.afro-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.afro-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+}
+
+/* Animação de fade-in ao rolar a página */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos para o Modal de Projeto */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(18, 15, 19, 0.8);
+    backdrop-filter: blur(8px);
+}
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 900px;
+    animation: slide-in 0.5s ease-out;
+}
+@keyframes slide-in {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.close-modal {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+}
