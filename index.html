@@ -1,393 +1,796 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syngred Sebinelli | Trama Afrofuturista</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syngred Sebinelli | Moda Autoral & Sustentável</title>
+  <meta name="description" content="Moda autoral sustentável, tingimento natural e design têxtil por Syngred Sebinelli.">
+
+  <!-- Fontes: Cormorant (Sofisticação) + Inter (Legibilidade) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Configuração Visual -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'creme-fundo': '#f9f7f4',
+            'texto': '#1c1c1c',
+            'verde-musgo': '#8a9a5b',
+            'verde-profundo': '#2A3325',
+            'terracota-suave': '#c4a57b',
+            'terracota-forte': '#d16a42',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+            'serif': ['Cormorant Garamond', 'serif'],
+            'mono': ['Roboto Mono', 'monospace'],
+          },
+          letterSpacing: {
+            'editorial': '0.05em',
+          },
+          borderRadius: {
+            'suave': '0.25rem',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Reset e Base */
+    body { font-weight: 300; -webkit-font-smoothing: antialiased; }
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    /* Scrollbar Premium */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f9f7f4; }
+    ::-webkit-scrollbar-thumb { background: #c4a57b; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8a9a5b; }
+
+    /* Classes Utilitárias Customizadas */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.0s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Navbar Transitions */
+    #navbar-container { transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1); }
+    #navbar-container.navbar-hidden { transform: translateY(-100%); }
     
-    <!-- Google Fonts: Poppins & Orbitron -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    /* Drop Cap para textos editoriais */
+    .drop-cap {
+      font-family: 'Cormorant Garamond', serif;
+      color: #c4a57b;
+      font-size: 4.5rem;
+      float: left;
+      line-height: 0.75;
+      margin-right: 0.75rem;
+      margin-top: 0.1rem;
+      font-style: italic;
+    }
+
+    /* Customização Swiper */
+    .swiper-button-next, .swiper-button-prev { 
+        color: #f9f7f4 !important; 
+        width: 3rem; height: 3rem;
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        background: rgba(0,0,0,0.1);
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after { font-size: 1.2rem !important; }
+    .swiper-button-next:hover, .swiper-button-prev:hover { background: #c4a57b; border-color: #c4a57b; color: white !important; }
+    .swiper-pagination-bullet { background: white !important; opacity: 0.5; }
+    .swiper-pagination-bullet-active { background: #c4a57b !important; opacity: 1; transform: scale(1.2); }
+
+    /* Accordion FAQ Animation */
+    details[open] summary ~ * { animation: sweep .4s ease-in-out; }
+    @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        /* Estilo base e variáveis de cor para um tema Afrofuturista */
-        :root {
-            --bg-color: #120F13; /* Preto profundo com tom roxo */
-            --text-color: #EAEAEA; /* Branco suave */
-            --primary-color: #D4AF37; /* Dourado antigo/metálico */
-            --accent-color: #8A2BE2; /* Roxo azulado vibrante */
-            --border-color: rgba(212, 175, 55, 0.2);
-        }
-
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            /* Fundo com padrão geométrico sutil */
-            background-image: 
-                linear-gradient(rgba(18, 15, 19, 0.95), rgba(18, 15, 19, 0.95)),
-                url('https://www.transparenttextures.com/patterns/diagmonds.png');
-        }
-        
-        /* Estilo para títulos */
-        h1, h2, h3, h4 {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* Estilo para cards com efeito sofisticado */
-        .afro-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .afro-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-        }
-        
-        /* Animação de fade-in ao rolar a página */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Estilos para o Modal de Projeto */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(18, 15, 19, 0.8);
-            backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            position: relative;
-            margin: 5% auto;
-            padding: 2rem;
-            width: 90%;
-            max-width: 900px;
-            animation: slide-in 0.5s ease-out;
-        }
-        @keyframes slide-in {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .close-modal {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            cursor: pointer;
-        }
-    </style>
+    /* Utilitários de Texto */
+    .text-balance { text-wrap: balance; }
+  </style>
 </head>
-<body class="antialiased">
 
-    <!-- Cabeçalho -->
-    <header class="bg-black/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-color)]">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#inicio" class="text-xl font-bold tracking-widest text-white hover:text-[var(--primary-color)] transition-colors">S. SEBINELLI</a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest">
-                <a href="#sobre" class="nav-link">MANIFESTO</a>
-                <a href="#portfolio" class="nav-link">COLEÇÕES</a>
-                <a href="#laboratorios" class="nav-link">LABORATÓRIOS</a>
-                <a href="#contato" class="nav-link">CONTATO</a>
-            </nav>
-            <button id="menu-btn" class="md:hidden z-50 text-white"><i data-lucide="menu" class="w-7 h-7"></i></button>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-10">
-            <a href="#sobre" class="menu-link">MANIFESTO</a>
-            <a href="#portfolio" class="menu-link">COLEÇÕES</a>
-            <a href="#laboratorios" class="menu-link">LABORATÓRIOS</a>
-            <a href="#contato" class="menu-link">CONTATO</a>
-        </div>
-    </header>
+<body class="bg-creme-fundo text-texto font-sans selection:bg-verde-profundo selection:text-terracota-suave overflow-x-hidden">
 
-    <main class="container mx-auto px-6">
-
-        <!-- Seção Início (Hero) -->
-        <section id="inicio" class="min-h-screen flex items-center pt-20">
-            <div class="w-full text-center md:text-left reveal">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-white">
-                    Tradição Ancestral
-                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)]">
-                        Visão Futurista.
-                    </span>
-                </h1>
-                <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto md:mx-0 text-gray-300">
-                    Reimaginando a tecnologia da tecelagem manual como artefatos de poder, identidade e futuro.
-                </p>
-                <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                    <a href="#portfolio" class="cta-button">Explorar Coleções</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Sobre / Manifesto -->
-        <section id="sobre" class="py-20 md:py-32 reveal">
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-2">
-                    <div class="p-2 border border-[var(--border-color)] rounded-lg afro-card">
-                        <img src="https://placehold.co/600x600/120F13/D4AF37?text=S.+S." alt="Retrato de Syngred Sebinelli" class="rounded-md w-full">
-                    </div>
-                </div>
-                <div class="md:col-span-3">
-                    <h2 class="section-title">Manifesto</h2>
-                    <p class="text-gray-300 mb-4 leading-relaxed">Cada ponto de crochê é um pixel, cada trama um código. Eu não apenas teço fios; eu programo narrativas. Meu trabalho resgata a tecelagem como uma tecnologia ancestral e a projeta no futuro, criando peças que são armaduras, amuletos e declarações. É a fusão do artesanato com o sci-fi, do orgânico com o circuito, honrando quem veio antes e construindo o amanhã.</p>
-                    <div class="mt-6 flex gap-x-6 gap-y-4 flex-wrap">
-                        <div class="flex items-center gap-2"><i data-lucide="dna" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Herança Tecnológica</span></div>
-                        <div class="flex items-center gap-2"><i data-lucide="gem" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Design Visionário</span></div>
-                        <div class="flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5 text-[var(--primary-color)]"></i><span>Produção Consciente</span></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Portfólio / Coleções -->
-        <section id="portfolio" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Coleção "Ananse"</h2>
-                <p class="section-subtitle">Artefatos tecidos, inspirados no Deus-Aranha, o contador de todas as histórias.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="project-card" data-project="1">
-                    <img src="https://placehold.co/800x600/8A2BE2/FFFFFF?text=Amuleto+Orun" alt="Amuleto Orun" class="project-image">
-                    <div class="p-6"><h3 class="text-xl font-bold">Amuleto Orun</h3><p class="text-gray-400 text-sm">Acessório de Poder / Fios Metálicos</p></div>
-                </div>
-                <div class="project-card" data-project="2">
-                    <img src="https://placehold.co/800x600/D4AF37/000000?text=Armadura+Nzinga" alt="Armadura Nzinga" class="project-image">
-                    <div class="p-6"><h3 class="text-xl font-bold">Armadura Nzinga</h3><p class="text-gray-400 text-sm">Vestuário / Fibras Recicladas</p></div>
-                </div>
-            </div>
-        </section>
+  <!-- HEADER / NAVBAR -->
+  <div id="navbar-container" class="fixed top-0 left-0 w-full z-50 p-4 sm:p-6 transition-all duration-500">
+    <header id="navbar" class="relative w-full max-w-7xl mx-auto bg-creme-fundo/80 backdrop-blur-md border border-white/20 rounded-full px-6 sm:px-8 py-3 transition-all duration-300 shadow-sm">
+      <div class="flex justify-between items-center">
         
-        <!-- Seção Laboratórios / Oficinas -->
-        <section id="laboratorios" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12 max-w-3xl mx-auto">
-                <h2 class="section-title">Laboratórios de Trama</h2>
-                <p class="section-subtitle">Um convite para decodificar a linguagem da tecelagem e programar suas próprias narrativas.</p>
+        <!-- Logo -->
+        <a href="#home" class="font-serif italic text-2xl text-verde-profundo flex items-center group z-50 relative">
+          <span class="h-8 w-8 rounded-full mr-3 bg-verde-musgo flex items-center justify-center text-creme-fundo text-sm font-serif italic group-hover:bg-terracota-suave transition-colors shadow-inner">S</span>
+          <span>Syngred.</span>
+        </a>
+        
+        <!-- Nav Desktop + Hamburguer -->
+        <nav class="flex items-center space-x-6">
+          <a href="#produtos" class="hidden md:inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-verde-profundo hover:text-terracota-suave transition-colors border-b border-transparent hover:border-terracota-suave pb-0.5">
+            Shop Online
+          </a>
+          
+          <!-- Botão Menu -->
+          <button id="menu-btn" class="z-50 group p-2 relative w-10 h-10 flex items-center justify-center focus:outline-none" aria-label="Menu">
+            <div class="flex flex-col justify-between w-6 h-3 transform transition-all duration-300 origin-center overflow-hidden">
+                <div class="bg-verde-profundo h-[1.5px] w-7 transform transition-all duration-300 origin-left group-hover:translate-x-2 delay-75"></div>
+                <div class="bg-verde-profundo h-[1.5px] w-7 transform transition-all duration-300 origin-left group-hover:translate-x-2 delay-100"></div>
+                <div class="bg-verde-profundo h-[1.5px] w-7 transform transition-all duration-300 origin-left group-hover:translate-x-2 delay-150"></div>
+                
+                <!-- Visual do X quando ativo será controlado via JS adicionando classe -->
             </div>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-                <div class="afro-card p-8 rounded-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2">Protocolo Gênesis</h3>
-                    <p class="text-gray-400 mb-4">Aprenda os códigos-fonte do crochê e crie seu primeiro artefato em uma imersão intensiva.</p>
-                    <p class="text-lg font-bold text-[var(--primary-color)] mb-4">Transmissões Limitadas</p>
-                    <a href="#contato" class="cta-button-secondary">Acessar Lista de Espera</a>
-                </div>
-                <div class="afro-card p-8 rounded-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2">Oráculo Pessoal</h3>
-                    <p class="text-gray-400 mb-4">Mentoria individual para tecelãs que desejam transmutar suas visões em coleções autorais.</p>
-                    <a href="#contato" class="cta-button-secondary">Consultar Disponibilidade</a>
-                </div>
-            </div>
-        </section>
+          </button>
+        </nav>
+      </div>
+    </header>
+  </div>
 
-        <!-- Seção Contato -->
-        <section id="contato" class="py-20 md:py-32 reveal">
-            <div class="text-center mb-12">
-                <h2 class="section-title">Iniciar Conexão</h2>
-                <p class="section-subtitle">Para comissionar artefatos, colaborações ou acessar os laboratórios.</p>
-            </div>
-            <div class="max-w-xl mx-auto afro-card p-8 rounded-lg">
-                <form id="contact-form">
-                    <div class="mb-4">
-                        <label for="interest" class="block text-sm font-medium text-gray-300 mb-1">Protocolo de Interesse:</label>
-                        <select id="interest" name="interest" class="form-input">
-                            <option>Comissionar um Artefato</option>
-                            <option>Acessar Laboratórios de Trama</option>
-                            <option>Propor Colaboração</option>
-                            <option>Outras Frequências</option>
-                        </select>
-                    </div>
-                    <div class="mb-4"><input type="text" id="name" name="name" placeholder="Seu Nome / Codinome" class="form-input" required></div>
-                    <div class="mb-4"><input type="email" id="email" name="email" placeholder="Seu Canal de Contato (Email)" class="form-input" required></div>
-                    <div class="mb-4"><textarea id="message" name="message" rows="4" placeholder="Sua Mensagem" class="form-input" required></textarea></div>
-                    <button type="submit" class="cta-button w-full">Transmitir Mensagem</button>
-                </form>
-                <p id="form-status" class="mt-4 text-center"></p>
-            </div>
-        </section>
-    </main>
+  <!-- MENU FULLSCREEN OVERLAY -->
+  <div id="menu-overlay" class="fixed inset-0 bg-creme-fundo z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-500">
+       <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none"></div>
+       
+       <button id="close-menu" class="absolute top-8 right-8 p-4 text-verde-profundo hover:text-terracota-suave transition-colors z-50" aria-label="Fechar Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+       </button>
 
-    <!-- Rodapé -->
-    <footer class="border-t border-[var(--border-color)] mt-20">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="social-link"><i data-lucide="instagram" class="w-6 h-6"></i></a>
-                <a href="#" class="social-link"><i data-lucide="send" class="w-6 h-6"></i></a>
+       <ul class="text-center space-y-8 font-serif text-4xl md:text-6xl text-verde-profundo relative z-10">
+         <li class="overflow-hidden"><a href="#home" class="menu-link block hover:italic hover:text-terracota-suave transition-all transform translate-y-10 opacity-0 transition-delay-100">Home</a></li>
+         <li class="overflow-hidden"><a href="#beneficios" class="menu-link block hover:italic hover:text-terracota-suave transition-all transform translate-y-10 opacity-0 transition-delay-200">Conceito</a></li>
+         <li class="overflow-hidden"><a href="#produtos" class="menu-link block hover:italic hover:text-terracota-suave transition-all transform translate-y-10 opacity-0 transition-delay-300">Loja</a></li>
+         <li class="overflow-hidden"><a href="#sobre" class="menu-link block hover:italic hover:text-terracota-suave transition-all transform translate-y-10 opacity-0 transition-delay-400">Portfolio</a></li>
+         <li class="overflow-hidden"><a href="#contato" class="menu-link block hover:italic hover:text-terracota-suave transition-all transform translate-y-10 opacity-0 transition-delay-500">Contato</a></li>
+       </ul>
+       
+       <div class="absolute bottom-10 text-verde-profundo/50 font-mono text-xs tracking-widest">
+           São Paulo • Brasil
+       </div>
+  </div>
+
+  <main>
+    <!-- 1. SEÇÃO HERO -->
+    <section id="home" class="relative h-screen w-full overflow-hidden">
+      <div class="swiper main-carousel h-full w-full">
+        <div class="swiper-wrapper">
+          
+          <!-- Slide 1 -->
+          <div class="swiper-slide relative">
+            <div class="relative w-full h-full">
+              <img src="https://images.unsplash.com/photo-1584926385599-a408f0873366?q=80&w=2070&auto=format&fit=crop" alt="Crochê Artesanal High End" class="w-full h-full object-cover brightness-[0.70]">
+              <div class="absolute inset-0 bg-gradient-to-t from-verde-profundo/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 p-8 md:p-24 w-full">
+                <div class="max-w-4xl reveal">
+                    <span class="text-white/90 font-mono text-xs tracking-[0.3em] uppercase mb-4 block border-l-2 border-terracota-suave pl-3 animate-fade-in">Coleção 2025</span>
+                    <h1 class="font-serif text-6xl md:text-8xl text-creme-fundo leading-[0.9] mb-6 italic drop-shadow-lg">
+                      Tecer o Tempo.
+                    </h1>
+                    <p class="font-sans text-creme-fundo/90 text-lg font-light max-w-lg mb-10 leading-relaxed drop-shadow-md">
+                      Onde a técnica ancestral do crochê encontra o design contemporâneo. Peças que não apenas vestem, mas narram histórias.
+                    </p>
+                    <a href="#produtos" class="inline-block bg-creme-fundo text-verde-profundo px-8 py-3 rounded-full font-mono text-xs uppercase tracking-widest border border-transparent hover:bg-terracota-suave hover:text-white hover:border-white/20 transition-all duration-300 shadow-lg">
+                        Explorar Coleção
+                    </a>
+                </div>
+              </div>
             </div>
-            <p class="text-sm">&copy; <span id="current-year"></span> Syngred Sebinelli. Tecendo o Futuro.</p>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide relative">
+            <div class="relative w-full h-full">
+              <img src="https://images.unsplash.com/photo-1619611444208-f3e654151723?q=80&w=2070&auto=format&fit=crop" alt="Tingimento Natural" class="w-full h-full object-cover brightness-[0.70]">
+              <div class="absolute bottom-0 left-0 p-8 md:p-24 w-full">
+                 <div class="max-w-4xl reveal">
+                    <span class="text-white/90 font-mono text-xs tracking-[0.3em] uppercase mb-4 block border-l-2 border-terracota-suave pl-3">Sustentabilidade</span>
+                    <h2 class="font-serif text-6xl md:text-8xl text-creme-fundo leading-[0.9] mb-6 italic drop-shadow-lg">
+                      A Cor da Terra.
+                    </h2>
+                    <p class="font-sans text-creme-fundo/90 text-lg font-light max-w-lg mb-10 leading-relaxed drop-shadow-md">
+                      Tingimento botânico extraído de resíduos. Urucum, cascas e raízes criam uma paleta viva e livre de tóxicos.
+                    </p>
+                    <a href="#resto-rito" class="inline-block border border-creme-fundo text-creme-fundo px-8 py-3 rounded-full font-mono text-xs uppercase tracking-widest hover:bg-creme-fundo hover:text-verde-profundo transition-all duration-300 shadow-lg">
+                        Conheça o Processo
+                    </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Manifesto -->
+          <div class="swiper-slide relative">
+            <div class="relative w-full h-full">
+              <img src="https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?q=80&w=2070&auto=format&fit=crop" alt="Natureza e Moda" class="w-full h-full object-cover brightness-[0.70]">
+              <div class="absolute bottom-0 left-0 p-8 md:p-24 w-full">
+                 <div class="max-w-4xl reveal">
+                    <span class="text-white/90 font-mono text-xs tracking-[0.3em] uppercase mb-4 block border-l-2 border-terracota-suave pl-3">Manifesto</span>
+                    <h2 class="font-serif text-6xl md:text-8xl text-creme-fundo leading-[0.9] mb-6 italic drop-shadow-lg">
+                      Resto é Rito.
+                    </h2>
+                    <p class="font-sans text-creme-fundo/90 text-lg font-light max-w-lg mb-10 leading-relaxed drop-shadow-md">
+                      O desperdício se torna matéria-prima de renascimento. Um ciclo fechado de respeito e regeneração.
+                    </p>
+                    <a href="#manifesto" class="inline-block border border-creme-fundo text-creme-fundo px-8 py-3 rounded-full font-mono text-xs uppercase tracking-widest hover:bg-creme-fundo hover:text-verde-profundo transition-all duration-300 shadow-lg">
+                        Ler Manifesto
+                    </a>
+                 </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-    </footer>
+        <!-- Navigation -->
+        <div class="swiper-button-prev !hidden md:!flex"></div>
+        <div class="swiper-button-next !hidden md:!flex"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
 
-    <!-- Modal para Estudos de Caso -->
-    <div id="project-modal" class="modal">
-        <div id="modal-content-container" class="modal-content afro-card rounded-lg">
-            <!-- Conteúdo do projeto será injetado aqui pelo JavaScript -->
+    <!-- 2. SEÇÃO BENEFÍCIOS -->
+    <section id="beneficios" class="bg-verde-profundo py-24 px-6 border-b border-white/5 text-creme-fundo">
+      <div class="container mx-auto max-w-6xl reveal">
+        
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl md:text-5xl mb-4 text-terracota-suave italic">Nossa Essência</h2>
+            <div class="w-16 h-[1px] bg-creme-fundo/20 mx-auto mb-4"></div>
+            <p class="font-sans text-sm md:text-base font-light text-creme-fundo/60 tracking-wide uppercase">
+                Três pilares que sustentam cada fio da nossa criação
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <!-- Card 1 -->
+            <div class="text-center px-4 pt-8 md:pt-0 group hover:bg-white/5 transition-colors duration-500 rounded-suave md:hover:bg-transparent">
+                <div class="w-12 h-12 mx-auto mb-6 text-terracota-suave group-hover:scale-110 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-full h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
+                </div>
+                <h3 class="font-serif text-2xl text-creme-fundo mb-3 italic">100% Artesanal</h3>
+                <p class="font-sans text-sm font-light text-white/60 leading-relaxed max-w-xs mx-auto">
+                    Cada ponto é feito à mão, garantindo que nenhuma peça seja igual a outra. A verdadeira definição de luxo.
+                </p>
+            </div>
+            <!-- Card 2 -->
+            <div class="text-center px-4 pt-8 md:pt-0 group hover:bg-white/5 transition-colors duration-500 rounded-suave md:hover:bg-transparent">
+                <div class="w-12 h-12 mx-auto mb-6 text-terracota-suave group-hover:scale-110 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-full h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                </div>
+                <h3 class="font-serif text-2xl text-creme-fundo mb-3 italic">Eco-Consciente</h3>
+                <p class="font-sans text-sm font-light text-white/60 leading-relaxed max-w-xs mx-auto">
+                    Tingimento botânico e biomateriais. Nossa cadeia produtiva regenera o meio ambiente ao invés de extrair.
+                </p>
+            </div>
+            <!-- Card 3 -->
+            <div class="text-center px-4 pt-8 md:pt-0 group hover:bg-white/5 transition-colors duration-500 rounded-suave md:hover:bg-transparent">
+                <div class="w-12 h-12 mx-auto mb-6 text-terracota-suave group-hover:scale-110 transition-transform duration-300">
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-full h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                </div>
+                <h3 class="font-serif text-2xl text-creme-fundo mb-3 italic">Design com Alma</h3>
+                <p class="font-sans text-sm font-light text-white/60 leading-relaxed max-w-xs mx-auto">
+                    Criado por Syngred Sebinelli. Moda que une ativismo, poesia e arquitetura têxtil em cada detalhe.
+                </p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SEÇÃO MANIFESTO -->
+    <section id="manifesto" class="container mx-auto max-w-5xl py-32 px-6 bg-creme-fundo text-center">
+      <div class="reveal">
+        <span class="font-mono text-xs uppercase tracking-[0.3em] text-terracota-suave block mb-12">Manifesto Autoral</span>
+        
+        <h2 class="font-serif text-5xl md:text-7xl text-verde-profundo leading-[1.1] mb-16 text-balance font-light italic">
+          "Meu corpo não é água mansa"
+        </h2>
+
+        <div class="space-y-16 font-serif text-2xl md:text-4xl leading-snug text-texto/80 max-w-3xl mx-auto">
+            <p class="opacity-90">
+                É rio quebra-mar<br>
+                É vertigem de asfalto<br>
+                É a água<br>
+                Que desagua e flui.
+            </p>
+            <p class="opacity-90">
+                É luz que atravessa a vidraça<br>
+                Sem pedir licença pra ser claro<br>
+                Luz que fura o teto<br>
+                <span class="text-verde-musgo">Quando o grito da boca cala.</span>
+            </p>
+            <p class="opacity-90">
+                Minha criação é caos<br>
+                É livre no verso torto<br>
+                É o que eu não disse.
+            </p>
+            <p class="opacity-90">
+                É a escolha por ser<br>
+                Não o por-do-sol<br>
+                mas o <span class="text-terracota-suave italic">Sol-do-meio-dia</span>,<br>
+                que queima o couro que não cabe na moldura.
+            </p>
+
+            <div class="pt-12">
+                <p class="text-xl md:text-2xl font-sans font-light tracking-wide uppercase text-verde-profundo border-t border-verde-profundo/20 pt-12 inline-block">
+                    Meu manifesto é sem métrica,<br>
+                    Fluidez brutal que cria a própria força de existir.
+                </p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SEÇÃO RESTO É RITO -->
+    <section id="resto-rito" class="bg-verde-profundo py-32 px-6 text-creme-fundo relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <!-- Coluna Texto -->
+                <div>
+                    <h2 class="font-serif text-6xl md:text-7xl text-creme-fundo leading-[0.9] mb-10">
+                        Resto é <br><span class="italic text-terracota-suave">Rito</span>.
+                    </h2>
+                    <div class="w-24 h-0.5 bg-terracota-suave mb-10"></div>
+                    
+                    <div class="font-sans font-light text-lg text-creme-fundo/80 space-y-6 leading-relaxed text-justify">
+                        <p>
+                            <span class="drop-cap">O</span> Brasil enfrenta um paradoxo: a fome convive com o desperdício. Toneladas de alimentos são descartadas enquanto a soberania alimentar fragiliza.
+                        </p>
+                        <p>
+                            Nesta coleção, propomos a alquimia: <strong>o resto vira rito</strong>. Cascas de cebola, caroços de abacate e urucum deixam de ser lixo para se tornarem pigmento vivo.
+                        </p>
+                        <p>
+                            A moda se reconecta à terra. O que vestimos nutre o solo ao fim de seu ciclo. Nada se perde, tudo se transforma em memória e cor.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Coluna Visual -->
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-6">
+                         <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?q=80&w=1935&auto=format&fit=crop" alt="Textura Natural" loading="lazy" class="w-full h-64 object-cover rounded-suave opacity-90 hover:opacity-100 transition-all duration-700 transform hover:-translate-y-2">
+                         <img src="https://images.unsplash.com/photo-1615655406736-b37c4fabf923?q=80&w=2070&auto=format&fit=crop" alt="Tingimento" loading="lazy" class="w-full h-64 object-cover rounded-suave opacity-90 hover:opacity-100 transition-all duration-700 transform hover:translate-y-2 mt-12">
+                    </div>
+                    <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-white/5 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SEÇÃO LOJA -->
+    <section id="produtos" class="py-32 bg-white">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+             <div>
+                 <span class="font-mono text-xs uppercase tracking-[0.2em] text-verde-musgo mb-2 block">Shop Online</span>
+                 <h2 class="font-serif text-5xl md:text-6xl text-verde-profundo leading-none">
+                   Coleção <span class="italic text-terracota-suave">Rito</span>
+                 </h2>
+             </div>
+             <a href="#" class="hidden md:block font-mono text-xs uppercase tracking-widest text-texto/50 hover:text-terracota-suave transition-colors border-b border-black/20 hover:border-terracota-suave pb-1 mt-8 md:mt-0">
+               Ver Todas as Peças
+             </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Card Produto 1 -->
+            <div class="group cursor-pointer reveal">
+                <div class="relative overflow-hidden rounded-suave aspect-[3/4] mb-6 bg-creme-fundo">
+                    <img src="https://placehold.co/600x800/8a9a5b/f9f7f4?text=Vestido+Terra" alt="Vestido Terra" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 w-full p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button class="w-full bg-white/90 backdrop-blur text-verde-profundo py-3 rounded-full font-mono text-xs uppercase tracking-widest hover:bg-verde-profundo hover:text-white transition-colors shadow-lg">
+                            Adicionar à Sacola
+                        </button>
+                    </div>
+                    <div class="absolute top-4 left-4 bg-terracota-suave text-white px-2 py-1 text-[10px] font-mono uppercase tracking-widest rounded-sm">New In</div>
+                </div>
+                <h3 class="font-serif text-2xl text-verde-profundo">Vestido Terra</h3>
+                <div class="flex justify-between items-center mt-2 border-t border-gray-100 pt-2">
+                    <p class="font-sans text-xs text-gray-500 uppercase tracking-wide">Algodão Orgânico</p>
+                    <span class="font-mono text-sm text-verde-profundo">R$ 420</span>
+                </div>
+            </div>
+
+            <!-- Card Produto 2 -->
+            <div class="group cursor-pointer reveal transition-delay-100">
+                <div class="relative overflow-hidden rounded-suave aspect-[3/4] mb-6 bg-creme-fundo">
+                    <img src="https://placehold.co/600x800/c4a57b/f9f7f4?text=Bolsa+Trama" alt="Bolsa Trama" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 w-full p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button class="w-full bg-white/90 backdrop-blur text-verde-profundo py-3 rounded-full font-mono text-xs uppercase tracking-widest hover:bg-verde-profundo hover:text-white transition-colors shadow-lg">
+                            Adicionar à Sacola
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-serif text-2xl text-verde-profundo">Bolsa Trama</h3>
+                <div class="flex justify-between items-center mt-2 border-t border-gray-100 pt-2">
+                    <p class="font-sans text-xs text-gray-500 uppercase tracking-wide">Macramê</p>
+                    <span class="font-mono text-sm text-verde-profundo">R$ 280</span>
+                </div>
+            </div>
+
+            <!-- Card Produto 3 -->
+            <div class="group cursor-pointer reveal transition-delay-200">
+                <div class="relative overflow-hidden rounded-suave aspect-[3/4] mb-6 bg-creme-fundo">
+                    <img src="https://placehold.co/600x800/d16a42/f9f7f4?text=Kimono+Ocre" alt="Kimono Ocre" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 w-full p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button class="w-full bg-white/90 backdrop-blur text-verde-profundo py-3 rounded-full font-mono text-xs uppercase tracking-widest hover:bg-verde-profundo hover:text-white transition-colors shadow-lg">
+                            Adicionar à Sacola
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-serif text-2xl text-verde-profundo">Kimono Ocre</h3>
+                <div class="flex justify-between items-center mt-2 border-t border-gray-100 pt-2">
+                    <p class="font-sans text-xs text-gray-500 uppercase tracking-wide">Linho Puro</p>
+                    <span class="font-mono text-sm text-verde-profundo">R$ 550</span>
+                </div>
+            </div>
+
+            <!-- Card Produto 4 -->
+            <div class="group cursor-pointer reveal transition-delay-300">
+                <div class="relative overflow-hidden rounded-suave aspect-[3/4] mb-6 bg-creme-fundo">
+                    <img src="https://placehold.co/600x800/4a542e/f9f7f4?text=Top+Raiz" alt="Top Raiz" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 w-full p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button class="w-full bg-white/90 backdrop-blur text-verde-profundo py-3 rounded-full font-mono text-xs uppercase tracking-widest hover:bg-verde-profundo hover:text-white transition-colors shadow-lg">
+                            Adicionar à Sacola
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-serif text-2xl text-verde-profundo">Top Raiz</h3>
+                <div class="flex justify-between items-center mt-2 border-t border-gray-100 pt-2">
+                    <p class="font-sans text-xs text-gray-500 uppercase tracking-wide">Crochê</p>
+                    <span class="font-mono text-sm text-verde-profundo">R$ 180</span>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SEÇÃO PROJETOS -->
+    <section id="projetos-grid" class="py-32 relative bg-fixed bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1605218427368-2402048c6454?q=80&w=2056&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-verde-profundo/95"></div>
+      
+      <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+        <div class="text-center mb-20 reveal">
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-creme-fundo/60 mb-4 block">Portfolio</span>
+            <h2 class="font-serif text-5xl md:text-6xl text-creme-fundo mb-4">Colaborações</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <!-- Projeto 1 -->
+            <div class="group reveal">
+                <div class="relative overflow-hidden rounded-suave aspect-video mb-8 shadow-2xl border border-white/5">
+                    <img src="https://placehold.co/800x500/4a542e/f9f7f4?text=Adidas+SL72" alt="Adidas SL72" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                </div>
+                <div class="border-l border-terracota-suave pl-6 transition-all duration-300 group-hover:border-l-4">
+                    <h3 class="font-serif text-3xl text-creme-fundo mb-2">Adidas - SL72</h3>
+                    <p class="font-sans text-sm text-creme-fundo/70 leading-relaxed mb-4">
+                        Personalização exclusiva do lançamento SL72 com penduricalhos artesanais nos cadarços.
+                    </p>
+                    <a href="#" class="text-terracota-suave font-mono text-xs uppercase tracking-widest hover:text-white transition-colors">Ver Case →</a>
+                </div>
+            </div>
+
+             <!-- Projeto 2 -->
+             <div class="group reveal transition-delay-100">
+                <div class="relative overflow-hidden rounded-suave aspect-video mb-8 shadow-2xl border border-white/5">
+                    <img src="https://placehold.co/800x500/c4a57b/f9f7f4?text=Tenis+Biomaterial" alt="Tênis Biomaterial" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                </div>
+                <div class="border-l border-terracota-suave pl-6 transition-all duration-300 group-hover:border-l-4">
+                    <h3 class="font-serif text-3xl text-creme-fundo mb-2">Biomaterial Têxtil</h3>
+                    <p class="font-sans text-sm text-creme-fundo/70 leading-relaxed mb-4">
+                        Desenvolvimento de tênis com celulose bacteriana e resíduos de crochê.
+                    </p>
+                    <a href="#" class="text-terracota-suave font-mono text-xs uppercase tracking-widest hover:text-white transition-colors">Ver Case →</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SEÇÃO SYNGRED -->
+    <section id="sobre" class="container mx-auto py-32 px-6 bg-creme-fundo">
+      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-16 items-start bg-white p-8 md:p-20 rounded-suave shadow-xl">
+        
+        <!-- Foto & Redes (Esquerda) -->
+        <div class="lg:col-span-5 relative">
+             <div class="w-full aspect-[3/4] overflow-hidden rounded-suave relative z-10 shadow-lg mb-8">
+                 <img src="https://placehold.co/800x1000/8a9a5b/f9f7f4?text=Syngred" alt="Syngred Sebinelli" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000">
+             </div>
+             
+             <!-- Links Sociais -->
+             <div class="flex justify-center gap-6">
+                <a href="https://www.linkedin.com/in/syngred/" target="_blank" class="text-verde-profundo hover:text-terracota-suave transition-colors" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://www.instagram.com/syngred/" target="_blank" class="text-verde-profundo hover:text-terracota-suave transition-colors" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="mailto:contato@syngred.com" class="text-verde-profundo hover:text-terracota-suave transition-colors" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+             </div>
+        </div>
+
+        <!-- Bio & Skills (Direita) -->
+        <div class="lg:col-span-7 space-y-12">
+          <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-terracota-suave mb-2 block">Designer & Pesquisadora</span>
+              <h2 class="font-serif text-5xl md:text-6xl text-verde-profundo leading-tight">
+                Syngred Sebinelli
+              </h2>
+          </div>
+          
+          <div class="font-sans text-gray-700 text-lg font-light leading-relaxed space-y-6 text-justify border-l-2 border-verde-musgo/20 pl-6">
+            <p>
+              Estudante de Design de Moda no Centro Universitário Belas Artes de São Paulo. Minha pesquisa se aprofunda nas manualidades têxteis e sustentabilidade, explorando a intersecção entre religião, ancestralidade e tingimento natural.
+            </p>
+            <p>
+              Como integrante do <strong>Comitê Racial Fashion Revolution (2025)</strong>, busco unir estética e ética, acreditando que o design é uma ferramenta poderosa para construir uma moda mais consciente, inclusiva e diversa.
+            </p>
+          </div>
+          
+          <!-- Skills Grid -->
+          <div>
+              <h4 class="font-serif text-2xl text-verde-profundo mb-6 italic border-b border-gray-100 pb-2">Competências Técnicas</h4>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <!-- Coluna 1 -->
+                  <div>
+                      <span class="font-mono text-xs uppercase tracking-wide text-terracota-suave mb-3 block">Manual & Têxtil</span>
+                      <div class="flex flex-wrap gap-2">
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Crochê Avançado</span>
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Macramê</span>
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Tingimento Natural</span>
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Bordado Livre</span>
+                      </div>
+                  </div>
+
+                  <!-- Coluna 2 -->
+                  <div>
+                      <span class="font-mono text-xs uppercase tracking-wide text-terracota-suave mb-3 block">Digital & Software</span>
+                      <div class="flex flex-wrap gap-2">
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Adobe Illustrator</span>
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Photoshop</span>
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">InDesign</span>
+                          <span class="px-3 py-1 bg-creme-fundo text-texto text-xs uppercase tracking-wide rounded-full border border-gray-200 hover:border-terracota-suave transition-colors cursor-default">Office / Canva</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SEÇÃO IMPACTO -->
+    <section id="impacto" class="py-32 bg-verde-profundo text-creme-fundo">
+        <div class="container mx-auto max-w-7xl px-6 reveal">
+            <div class="text-center mb-20">
+                <span class="font-mono text-sm uppercase tracking-widest text-terracota-suave mb-4 block">Agenda 2030</span>
+                <h2 class="font-serif text-5xl md:text-7xl leading-tight mb-6">Impacto Global.</h2>
+                <p class="max-w-2xl mx-auto font-sans font-light text-lg text-creme-fundo/80">
+                    Compromisso real com os Objetivos de Desenvolvimento Sustentável da ONU.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- ODS Cards -->
+                <div class="bg-white/5 p-10 rounded-suave hover:bg-white/10 transition-colors border border-white/5 group">
+                    <h3 class="font-serif text-3xl text-terracota-suave mb-4 group-hover:translate-x-2 transition-transform">♻️ Sustentabilidade</h3>
+                    <p class="text-xs opacity-60 mb-4 font-mono tracking-widest">ODS 12 • ODS 13</p>
+                    <p class="font-light text-creme-fundo/80">Zero waste e produção sob demanda para eliminar estoques mortos.</p>
+                </div>
+                <div class="bg-white/5 p-10 rounded-suave hover:bg-white/10 transition-colors border border-white/5 group">
+                    <h3 class="font-serif text-3xl text-terracota-suave mb-4 group-hover:translate-x-2 transition-transform">🌱 Ética Animal</h3>
+                    <p class="text-xs opacity-60 mb-4 font-mono tracking-widest">ODS 15</p>
+                    <p class="font-light text-creme-fundo/80">Livre de crueldade. Alternativas vegetais ao couro e seda.</p>
+                </div>
+                <div class="bg-white/5 p-10 rounded-suave hover:bg-white/10 transition-colors border border-white/5 group">
+                    <h3 class="font-serif text-3xl text-terracota-suave mb-4 group-hover:translate-x-2 transition-transform">✊ Justiça Social</h3>
+                    <p class="text-xs opacity-60 mb-4 font-mono tracking-widest">ODS 5 • ODS 10</p>
+                    <p class="font-light text-creme-fundo/80">Remuneração digna e protagonismo feminino na cadeia produtiva.</p>
+                </div>
+                <div class="bg-white/5 p-10 rounded-suave hover:bg-white/10 transition-colors border border-white/5 group">
+                    <h3 class="font-serif text-3xl text-terracota-suave mb-4 group-hover:translate-x-2 transition-transform">🤝 Comunidade</h3>
+                    <p class="text-xs opacity-60 mb-4 font-mono tracking-widest">ODS 1 • ODS 8</p>
+                    <p class="font-light text-creme-fundo/80">Fomento à economia local e capacitação de novas artesãs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. SEÇÃO FAQ -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="container mx-auto max-w-3xl px-6 reveal">
+            <h2 class="font-serif text-4xl text-verde-profundo text-center mb-12">Dúvidas Frequentes</h2>
+            <div class="space-y-4">
+                <details class="group bg-creme-fundo rounded-suave p-6 cursor-pointer border border-transparent hover:border-verde-musgo/20 transition-colors">
+                    <summary class="flex justify-between items-center font-serif text-xl text-verde-profundo list-none">
+                        <span>Como funciona o tingimento natural?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-terracota-suave">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 font-light leading-relaxed">Utilizamos resíduos orgânicos como cascas de cebola, cúrcuma e urucum. O processo é lento, artesanal e resulta em cores vivas, únicas e não tóxicas.</p>
+                </details>
+                 <details class="group bg-creme-fundo rounded-suave p-6 cursor-pointer border border-transparent hover:border-verde-musgo/20 transition-colors">
+                    <summary class="flex justify-between items-center font-serif text-xl text-verde-profundo list-none">
+                        <span>As peças são exclusivas?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-terracota-suave">▼</span>
+                    </summary>
+                    <p class="text-gray-600 mt-4 font-light leading-relaxed">Sim. Devido à natureza manual do crochê e às variações naturais do tingimento botânico, nenhuma peça é idêntica à outra. Você veste uma obra única.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+    
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contato" class="bg-verde-profundo text-creme-fundo pt-20 pb-10 px-6 border-t border-white/10">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <a href="#home" class="font-serif italic text-5xl block mb-6 text-terracota-suave hover:text-white transition-colors">Syngred.</a>
+                <p class="font-sans text-sm opacity-70 font-light max-w-sm leading-relaxed">
+                    Design como rito. Moda como manifesto.<br>
+                    Respeitando o tempo da terra e das mãos.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-mono text-xs uppercase tracking-widest mb-6 opacity-50 text-terracota-suave">Navegação</h4>
+                <ul class="space-y-3 font-sans text-sm font-light opacity-80">
+                    <li><a href="#produtos" class="hover:text-terracota-suave transition-colors">Shop Online</a></li>
+                    <li><a href="#manifesto" class="hover:text-terracota-suave transition-colors">Manifesto</a></li>
+                    <li><a href="#impacto" class="hover:text-terracota-suave transition-colors">Impacto Social</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-mono text-xs uppercase tracking-widest mb-6 opacity-50 text-terracota-suave">Social</h4>
+                <ul class="space-y-3 font-sans text-sm font-light opacity-80">
+                    <li><a href="#" class="hover:text-terracota-suave transition-colors flex items-center gap-2">Instagram <span>↗</span></a></li>
+                    <li><a href="#" class="hover:text-terracota-suave transition-colors flex items-center gap-2">Pinterest <span>↗</span></a></li>
+                    <li><a href="#" class="hover:text-terracota-suave transition-colors flex items-center gap-2">LinkedIn <span>↗</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between text-xs font-mono opacity-40 uppercase tracking-widest">
+            <p>&copy; 2025 Syngred Sebinelli. All rights reserved.</p>
+            <p class="mt-2 md:mt-0">São Paulo, Brasil</p>
         </div>
     </div>
+  </footer>
 
-    <script>
-        // --- CONFIGURAÇÃO E ESTILOS DINÂMICOS ---
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: 'var(--primary-color)',
-                        accent: 'var(--accent-color)',
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        serif: ['Orbitron', 'sans-serif'],
-                    }
-                }
-            }
+  <!-- JAVASCRIPT LÓGICA -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- Navbar Scroll Effect ---
+      const navbarContainer = document.getElementById("navbar-container");
+      const navbar = document.getElementById('navbar');
+      let lastScrollTop = 0;
+      
+      window.addEventListener("scroll", () => {
+        let scrollTop = window.scrollY || document.documentElement.scrollTop;
+        
+        // Efeito Glassmorphism ao rolar
+        if (scrollTop > 50) {
+           navbar.classList.add('bg-white/90', 'shadow-lg');
+           navbar.classList.remove('bg-creme-fundo/80', 'border-white/20');
+           navbar.classList.add('border-gray-200');
+        } else {
+           navbar.classList.remove('bg-white/90', 'shadow-lg', 'border-gray-200');
+           navbar.classList.add('bg-creme-fundo/80', 'border-white/20');
         }
         
-        const applyBaseStyles = () => {
-            document.querySelectorAll('.nav-link').forEach(el => el.classList.add('hover:text-[var(--primary-color)]', 'transition-colors'));
-            document.querySelectorAll('.menu-link').forEach(el => el.classList.add('text-2xl', 'font-bold', 'tracking-widest', 'hover:text-[var(--primary-color)]', 'transition-colors'));
-            document.querySelectorAll('.cta-button').forEach(el => el.classList.add('bg-[var(--primary-color)]', 'text-black', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'hover:shadow-[0_0_20px_var(--primary-color)]', 'tracking-widest'));
-            document.querySelectorAll('.cta-button-secondary').forEach(el => el.classList.add('bg-transparent', 'text-[var(--primary-color)]', 'font-bold', 'py-3', 'px-8', 'rounded-lg', 'transition-all', 'transform', 'hover:scale-105', 'border-2', 'border-[var(--primary-color)]', 'hover:bg-[var(--primary-color)]', 'hover:text-black', 'tracking-widest'));
-            document.querySelectorAll('.section-title').forEach(el => el.classList.add('text-3xl', 'md:text-4xl', 'font-bold', 'text-white'));
-            document.querySelectorAll('.section-subtitle').forEach(el => el.classList.add('text-lg', 'text-gray-400', 'mt-2', 'font-sans', 'normal-case', 'tracking-normal'));
-            document.querySelectorAll('.social-link').forEach(el => el.classList.add('text-gray-400', 'hover:text-[var(--primary-color)]', 'transition-colors'));
-            document.querySelectorAll('.project-card').forEach(el => el.classList.add('group', 'block', 'rounded-lg', 'afro-card', 'overflow-hidden', 'cursor-pointer'));
-            document.querySelectorAll('.project-image').forEach(el => el.classList.add('w-full', 'h-full', 'object-cover', 'transition-transform', 'duration-500', 'group-hover:scale-105'));
-            document.querySelectorAll('.form-input').forEach(el => el.classList.add('w-full', 'p-3', 'bg-black/20', 'border', 'border-[var(--border-color)]', 'rounded-lg', 'focus:outline-none', 'focus:ring-2', 'focus:ring-[var(--primary-color)]', 'transition-all', 'placeholder-gray-500', 'font-sans'));
-        };
-
-        // --- MENU MOBILE ---
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const toggleMenu = () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            document.body.style.overflow = isHidden ? '' : 'hidden';
-            menuBtn.querySelector('i').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
-            lucide.createIcons();
-        };
-        menuBtn.addEventListener('click', toggleMenu);
-        document.querySelectorAll('.menu-link, .nav-link').forEach(link => link.addEventListener('click', () => !mobileMenu.classList.contains('hidden') && toggleMenu()));
-
-        // --- ANIMAÇÃO DE SCROLL (REVEAL) ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // --- LÓGICA DO MODAL DE PROJETOS ---
-        const projectModal = document.getElementById('project-modal');
-        const modalContentContainer = document.getElementById('modal-content-container');
-        
-        const projectData = {
-            '1': {
-                title: 'Amuleto Orun',
-                category: 'Acessório de Poder / Fios Metálicos',
-                image: 'https://placehold.co/800x450/8A2BE2/FFFFFF?text=Amuleto+Orun+Detalhes',
-                concept: 'Orun, o céu. Este amuleto é uma representação portátil do cosmos, uma galáxia tecida para ser usada como ponto de força e conexão espiritual.',
-                materials: 'Trama de fios metálicos reciclados sobre uma base de fibra de carbono, garantindo leveza e resistência. Contém um fragmento de quartzo no núcleo.',
-                process: 'Cada amuleto é tecido em um padrão fractal único, um processo meditativo que dura 12 horas. A geometria é inspirada nos diagramas cosmogônicos iorubás.',
-                finalPiece: 'Um artefato que une o sagrado e o tecnológico, servindo como um lembrete de que carregamos o universo dentro de nós.'
-            },
-            '2': {
-                title: 'Armadura Nzinga',
-                category: 'Vestuário / Fibras Recicladas',
-                image: 'https://placehold.co/800x450/D4AF37/000000?text=Armadura+Nzinga+Detalhes',
-                concept: 'Inspirada na rainha Nzinga de Angola, esta peça não é uma blusa, é uma armadura. É sobre ocupar espaços com confiança, poder e a memória de quem lutou antes de nós.',
-                materials: 'Fios de alta durabilidade feitos de plástico PET reciclado, com detalhes em trama de cobre para conduzir e proteger a energia de quem a veste.',
-                process: 'A modelagem combina a rigidez de uma ombreira com a fluidez do crochê, criando uma silhueta que é ao mesmo tempo imponente e orgânica.',
-                finalPiece: 'Uma peça de vestuário que é uma declaração. Não é para se esconder, é para ser vista. É a materialização da soberania pessoal.'
-            }
-        };
-
-        const createModalContent = (data) => {
-            return `
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h2 class="text-3xl font-bold mb-2">${data.title}</h2>
-                        <p class="text-sm text-gray-400 mb-6 font-sans normal-case tracking-normal">${data.category}</p>
-                    </div>
-                    <i data-lucide="x" class="close-modal w-8 h-8 text-gray-400 hover:text-white transition-colors"></i>
-                </div>
-                <img src="${data.image}" alt="${data.title}" class="w-full rounded-lg mb-8">
-                <div class="space-y-6 text-gray-300 font-sans">
-                    <div><h3 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-1">Conceito</h3><p>${data.concept}</p></div>
-                    <div><h3 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-1">Materiais e Tecnologia</h3><p>${data.materials}</p></div>
-                    <div><h3 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-1">Processo de Tecelagem</h3><p>${data.process}</p></div>
-                    <div><h4 class="font-serif uppercase tracking-widest font-bold text-lg text-white mb-2">O Artefato Final</h4><p class="italic text-[var(--primary-color)]">"${data.finalPiece}"</p></div>
-                </div>
-                <div class="mt-8 pt-6 border-t border-[var(--border-color)] text-center">
-                    <a href="#contato" class="cta-button modal-cta">Comissionar um Artefato</a>
-                </div>
-            `;
-        };
-        
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const projectId = card.dataset.project;
-                const data = projectData[projectId];
-                modalContentContainer.innerHTML = createModalContent(data);
-                projectModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                lucide.createIcons();
-                projectModal.querySelector('.close-modal').addEventListener('click', closeModal);
-                projectModal.querySelector('.modal-cta').addEventListener('click', closeModal);
-            });
-        });
-
-        const closeModal = () => {
-            projectModal.style.display = 'none';
-            document.body.style.overflow = '';
+        // Esconder/Mostrar Navbar
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+          navbarContainer.classList.add("navbar-hidden");
+        } else {
+          navbarContainer.classList.remove("navbar-hidden");
         }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      }, { passive: true });
 
-        window.addEventListener('click', (event) => {
-            if (event.target == projectModal) closeModal();
-        });
 
-        // --- FORMULÁRIO DE CONTATO ---
-        const form = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            formStatus.textContent = 'Transmitindo...';
-            formStatus.style.color = 'var(--text-color)';
-            
-            setTimeout(() => {
-                formStatus.textContent = 'Conexão Estabelecida. Mensagem Recebida.';
-                formStatus.style.color = 'var(--primary-color)';
-                form.reset();
-            }, 1500);
+      // --- Scroll Reveal (Animação de entrada) ---
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Optional: unobserve after revealing
+            // revealObserver.unobserve(entry.target); 
+          }
         });
+      }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+      
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // --- INICIALIZAÇÃO ---
-        document.addEventListener('DOMContentLoaded', () => {
-            applyBaseStyles();
-            lucide.createIcons();
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
-    </script>
+
+      // --- Swiper Hero Config ---
+      new Swiper(".main-carousel", {
+        loop: true,
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        speed: 1500,
+        autoplay: { delay: 6000, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+      });
+      
+
+      // --- Menu Mobile Logic (Refatorado) ---
+      const menuBtn = document.getElementById('menu-btn');
+      const menuOverlay = document.getElementById('menu-overlay');
+      const closeMenu = document.getElementById('close-menu');
+      const menuLinks = document.querySelectorAll('.menu-link');
+      
+      function toggleMenu() {
+          const isOpen = !menuOverlay.classList.contains('pointer-events-none');
+          
+          if (isOpen) {
+              // Fechar
+              document.body.style.overflow = ''; // Reabilitar scroll
+              menuOverlay.classList.remove('opacity-100');
+              menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+              
+              // Resetar animações dos links
+              menuLinks.forEach(link => {
+                  link.classList.remove('translate-y-0', 'opacity-100');
+                  link.classList.add('translate-y-10', 'opacity-0');
+              });
+              
+          } else {
+              // Abrir
+              document.body.style.overflow = 'hidden'; // Travar scroll
+              menuOverlay.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+              menuOverlay.classList.add('opacity-100');
+
+              // Animar links com delay
+              setTimeout(() => {
+                  menuLinks.forEach((link, index) => {
+                      setTimeout(() => {
+                          link.classList.remove('translate-y-10', 'opacity-0');
+                          link.classList.add('translate-y-0', 'opacity-100');
+                      }, index * 100);
+                  });
+              }, 300);
+          }
+      }
+      
+      menuBtn.addEventListener('click', toggleMenu);
+      closeMenu.addEventListener('click', toggleMenu);
+      
+      // Fechar menu ao clicar em um link
+      menuLinks.forEach(link => {
+          link.addEventListener('click', toggleMenu);
+      });
+      
+      // Fechar com ESC
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !menuOverlay.classList.contains('pointer-events-none')) {
+              toggleMenu();
+          }
+      });
+
+    });
+  </script>
 </body>
 </html>
